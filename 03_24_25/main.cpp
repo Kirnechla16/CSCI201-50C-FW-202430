@@ -8,7 +8,7 @@
 // lecture activity fill in input validation in makeClock
 
 clockType clockTick();
-bool codeGradeLoopFix();
+bool isInputValid();
 void makeClock();
 bool validFormat(std::string format);
 void resetStream();
@@ -23,7 +23,8 @@ int main()
     tclock.setHour(13);
     std::cout << "How many clocks? ";
     std::cin >> x;
-    if (codeGradeLoopFix())
+    if (x <= 0){
+        std::cout << " Please enter a valid number" // The number chocie can only be a positive not negative or positive.
         return 0;
     for (int i = 0; i < x; i++)
     {
@@ -58,7 +59,7 @@ int main()
     std::cout << "Would you like a 12 hour clock or a 24 hour clock? " << std::endl;
     std::cin >> std::ws;
     getline(std::cin, format);
-    if (codeGradeLoopFix())
+    if (std::ws != 12 || std::ws != 24)
     {
         return 0;
     }
@@ -72,7 +73,7 @@ clockType clockTick()
     return theClock;
 }
 
-bool codeGradeLoopFix()
+bool isInputValid()
 {
     if (std::cin.eof())
     {
@@ -94,7 +95,7 @@ void makeClock()
     getline(std::cin, format);
     while (!validFormat(format))
     {
-        if (codeGradeLoopFix())
+        if (std::ws != 12 || std::ws != 24)
         {
             return;
         }
@@ -117,7 +118,7 @@ void makeClock()
     {
         while (!std::cin || hr < 0 || hr > 23)
         {
-            if (codeGradeLoopFix())
+            if (hr >= 0 || hr <= 23)
             {
                 return;
             }
@@ -133,7 +134,7 @@ void makeClock()
     {
         while (!std::cin || hr < 1 || hr > 12)
         {
-            if (codeGradeLoopFix())
+            if (hr >= 0 || hr <= 12)
             {
                 return;
             }
@@ -157,7 +158,7 @@ void makeClock()
         std::cin >> p;
         while (!validPart(p))
         {
-            if (codeGradeLoopFix())
+            if (p != AM || p != PM)
             {
                 return;
             }
